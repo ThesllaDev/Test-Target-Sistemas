@@ -1,0 +1,49 @@
+<!--
+QUESTÃO 2:
+2) Dado a sequência de Fibonacci, onde se inicia por 0 e 1 e o próximo valor sempre será a soma dos 2 valores anteriores (exemplo: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...), escreva um programa na linguagem que desejar onde, informado um número, ele calcule a sequência de Fibonacci e retorne uma mensagem avisando se o número informado pertence ou não a sequência.
+
+IMPORTANTE: Esse número pode ser informado através de qualquer entrada de sua preferência ou pode ser previamente definido no código;
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Fibonacci</title>
+</head>
+<body>
+    <h1>Verifique se o número pertence à sequência de Fibonacci</h1>
+    <label for="numero">Digite um número: </label>
+    <input type="number" id="numero" placeholder="Insira um número">
+    <button onclick="verificarFibonacci()">Verificar</button>
+    <p id="resultado"></p>
+
+    <script>
+        function pertenceFibonacci(num) {
+            let a = 0, b = 1;
+
+            while (b < num) {
+                let temp = b;
+                b = a + b;
+                a = temp;
+            }
+
+            if (b === num) {
+                return `${num} pertence à sequência de Fibonacci.`;
+            } else {
+                return `${num} não pertence à sequência de Fibonacci.`;
+            }
+        }
+
+        function verificarFibonacci() {
+            let numero = parseInt(document.getElementById("numero").value);
+
+            if (isNaN(numero)) {
+                document.getElementById("resultado").textContent = "Por favor, insira um número válido.";
+            } else {
+                document.getElementById("resultado").textContent = pertenceFibonacci(numero);
+            }
+        }
+    </script>
+</body>
+</html>
